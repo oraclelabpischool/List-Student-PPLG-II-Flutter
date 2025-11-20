@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:list_student_pplg/widget/container_custome.dart';
-import 'dart:async';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -14,7 +13,7 @@ class _MyHomePageState extends State<MyHomePage> {
     showModalBottomSheet(
       context: context,
       builder: (builder) {
-        return Container(
+        return SizedBox(
           width: double.infinity,
           height: 400.0,
           child: Column(

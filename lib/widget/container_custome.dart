@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+@immutable
 class ContainerCustome extends StatelessWidget {
   ContainerCustome({super.key, required this.title1, required this.title2});
 
