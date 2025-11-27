@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:list_student_pplg/screen/my_home_page.dart';
+import 'package:list_student_pplg/screen/my_home_page_async.dart';
+// import 'package:list_student_pplg/screen/my_home_page.dart';
 
 void main() => runApp(const MyApp());
 
@@ -13,7 +14,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
       ),
-      home: const MyHomePage(),
+      // home: const MyHomePage(),
+      home: const MyHomePageAsync(),
     );
   }
 }

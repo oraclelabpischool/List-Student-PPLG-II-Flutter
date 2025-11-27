@@ -8,7 +8,7 @@ class ContainerCustome extends StatelessWidget {
     required this.classes,
     required this.major,
     required this.gender,
-    required this.age,
+    // required this.age,
     required this.onTap,
   });
 
@@ -16,7 +16,7 @@ class ContainerCustome extends StatelessWidget {
   String classes;
   String major;
   String gender;
-  String age;
+  // String age;
   Function onTap;
 
   @override
@@ -36,7 +36,7 @@ class ContainerCustome extends StatelessWidget {
                   Text("Class: $classes"),
                   Text("Gender: $gender"),
                   Text("Major: $major"),
-                  Text("Age: $age"),
+                  // Text("Age: $age"),
                 ],
               ),
               Column(
