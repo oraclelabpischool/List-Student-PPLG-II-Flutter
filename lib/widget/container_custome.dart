@@ -2,10 +2,22 @@ import 'package:flutter/material.dart';
 
 @immutable
 class ContainerCustome extends StatelessWidget {
-  ContainerCustome({super.key, required this.title1, required this.title2});
+  ContainerCustome({
+    super.key,
+    required this.name,
+    required this.classes,
+    required this.major,
+    required this.gender,
+    required this.age,
+    required this.onTap,
+  });
 
-  String title1;
-  String title2;
+  String name;
+  String classes;
+  String major;
+  String gender;
+  String age;
+  Function onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +28,36 @@ class ContainerCustome extends StatelessWidget {
           padding: const EdgeInsets.all(15.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [Text(title1), Text(title2)],
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Name: $name"),
+                  Text("Class: $classes"),
+                  Text("Gender: $gender"),
+                  Text("Major: $major"),
+                  Text("Age: $age"),
+                ],
+              ),
+              Column(
+                children: [
+                  IconButton(
+                    onPressed: () => onTap(),
+                    icon: Icon(
+                      Icons.edit,
+                      color: const Color.fromARGB(255, 244, 147, 2),
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.delete,
+                      color: const Color.fromARGB(255, 255, 0, 13),
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       ),

@@ -37,6 +37,8 @@ class _MyHomePageState extends State<MyHomePage> {
         const DropdownMenuEntry(value: "Female", label: "Female"),
       ];
 
+  String typeForm = "";
+
   void _showModalSheet() {
     showModalBottomSheet(
       context: context,
@@ -49,7 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Text(
-                  "Add Student",
+                  typeForm,
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
@@ -118,16 +120,19 @@ class _MyHomePageState extends State<MyHomePage> {
                       ScaffoldMessenger.of(context).showSnackBar(snackdemo);
                       return;
                     }
-
-                    listStudent.add({
-                      "full_name": fullName.text,
-                      "classes": classSelected,
-                      "major": majorSelected,
-                      "Age": age.text,
-                      "gender": genderSelected,
+                    setState(() {
+                      listStudent.add({
+                        "full_name": fullName.text,
+                        "classes": classSelected,
+                        "major": majorSelected,
+                        "Age": age.text,
+                        "gender": genderSelected,
+                      });
                     });
+
+                    fullName.clear();
+                    age.clear();
                     Navigator.pop(context);
-                    print("BUtton On Click $listStudent");
                   },
                   child: const Text("Add Student"),
                 ),
@@ -137,6 +142,18 @@ class _MyHomePageState extends State<MyHomePage> {
         );
       },
     );
+  }
+
+  void _showUpdateModalSheet(int index) {
+    setState(() {
+      typeForm = "Update Student";
+      fullName.text = listStudent[index]['full_name'];
+      age.text = listStudent[index]['Age'];
+      classSelected = listStudent[index]['classes'];
+      majorSelected = listStudent[index]['major'];
+      genderSelected = listStudent[index]['gender'];
+    });
+    _showModalSheet();
   }
 
   @override
@@ -157,19 +174,30 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Container(
         width: double.infinity,
         color: Colors.blue,
-        child: Column(
+        child: ListView(
           children: [
             for (int idx = 0; idx < listStudent.length; idx++)
               ContainerCustome(
-                title1: "Name: ${listStudent[idx]['full_name']}",
-                title2: "Class: ${listStudent[idx]['classes']}",
+                name: listStudent[idx]['full_name'],
+                classes: listStudent[idx]['classes'],
+                age: listStudent[idx]['Age'],
+                major: listStudent[idx]['major'],
+                gender: listStudent[idx]['gender'],
+                onTap: () => _showUpdateModalSheet(idx),
               ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _showModalSheet,
-        child: Text("+"),
+        onPressed: () {
+          setState(() {
+            typeForm = "Add Student";
+            fullName.text = "";
+            age.text = "";
+          });
+          _showModalSheet();
+        },
+        child: Icon(Icons.add),
       ),
     );
   }
